@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>ROSSO</title>
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@0642e09bbdc8e7539a0608672a5f0197fbf3d21e/dist/aframe-master.min.js"></script>
+  <script src="https://binzume.github.io/aframe-xylayout/dist/xylayout-all.min.js?"></script>
+  <script src="js/rosso.js"></script>
+</head>
+
+<body style="background-color: #25a; color:white;">
+  <a-scene fog="type: linear; color: #25a; near:10;far:50;" cursor="rayOrigin: mouse; fuse:false"
+    raycaster="objects:.collidable,.clickable,a-rounded;far:Infinity" renderer="antialias:true;">
+    <a-sky class="collidable" instantiate-on-click="template:mainMenuTemplate;id:mainMenu;align:raycaster"></a-sky>
+
+    <a-assets>
+      <script id="mainMenuTemplate" type="text/html">
+        <a-xywindow main-menu position="0 2 -8" title="Menu" width="4.5" height="0.6" align-items="stretch" direction="column">
+          <a-xycontainer height="0.6" direction="row" justify-items="stretch">
+          </a-xycontainer>
+        </a-xywindow>
+      </script>
+    </a-assets>
+
+    <a-entity id="camera-rig" position-controls="arrowkeys:rotation;axismove:rotation2">
+      <a-camera position="0 1.5 0" look-controls="enabled:false"></a-camera>
+      <a-entity laser-controls="hand: right" raycaster="far:Infinity;objects:.collidable,.clickable,a-rounded" line="color: #3060a0; opacity: 0.5"></a-entity>
+      <a-entity laser-controls="hand: left" raycaster="far:Infinity;objects:.collidable,.clickable,a-rounded" line="color: #3060a0; opacity: 0.5"></a-entity>
+      <!-- kbd -->
+      <a-entity position="0 0.8 -3">
+        <a-xykeyboard></a-xykeyboard>
+      </a-entity>
+    </a-entity>
+
+    <a-plane id="ground" material="shader:flat" rotation="-90 0 0" position="0 0 0" width="100" height="100" color="#bca"></a-plane>
+
+    <a-entity position="0 2 -2" fish gltf-model="url(assets/kingyo01.glb)" >
+      <a-box class="collidable" width="0.2" height="0.3" depth="0.4" visible="false" class="collidable"></a-box>
+    </a-entity>
+
+    <a-entity position="3 0 -3" gltf-model="url(assets/plant01.glb)"></a-entity>
+    <a-entity position="-1 0 -2" gltf-model="url(assets/plant01.glb)"></a-entity>
+    <a-entity position="-0 0 -4" gltf-model="url(assets/plant02.glb)"></a-entity>
+
+    <!-- grabbables -->
+    <a-box width="0.3" height="0.3" depth="0.3" position="-2 1.0 -1" color="#6ff" xy-drag-control></a-box>
+    <a-box width="0.3" height="0.3" depth="0.3" position="-2 2.0 -1" color="#6ff" xy-drag-control></a-box>
+    <a-box width="0.3" height="0.3" depth="0.3" position="-2 3.0 -1" color="#6ff" xy-drag-control></a-box>
+    <a-box width="0.3" height="0.3" depth="0.3" position="-2 4.0 -1" color="#6ff" xy-drag-control></a-box>
+
+  </a-scene>
+</body>
+
+</html>
